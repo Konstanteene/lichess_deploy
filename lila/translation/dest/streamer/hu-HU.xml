@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="lichessStreamers">Lichess streamerek</string>
+  <string name="lichessStreamer">Lichess streamer</string>
+  <string name="live">ÉLŐ!</string>
+  <string name="offline">NINCS ADÁS</string>
+  <string name="currentlyStreaming" comment="%s is the title of the stream, chosen by the streamer.">Jelenlegi közvetítés: %s</string>
+  <string name="lastStream" comment="%s is how long ago the stream was in relative time (e.g. 50 minutes ago). It is displayed in smaller type than the rest of the string.">Utolsó közvetítés %s</string>
+  <string name="becomeStreamer">Legyél Te is Lichess streamer</string>
+  <string name="doYouHaveStream">Van már Twitch vagy YouTube csatornád?</string>
+  <string name="hereWeGo">Lássunk neki!</string>
+  <string name="allStreamers">Összes streamer</string>
+  <string name="editPage">Streamer oldal szerkesztése</string>
+  <string name="yourPage">Streamer oldalad</string>
+  <string name="downloadKit">Streamer csomag letöltése</string>
+  <string name="xIsStreaming">%s éppen közvetít</string>
+  <string name="rules">Közvetítés szabályai</string>
+  <string name="rule1">A \"lichess.org\" kulcsszó hozzáadása a közvetítés címéhez és \"Sakk\" kategória használata mikor a Lichess-en közvetítesz.</string>
+  <string name="rule2">Távolítsd el a kulcsszót ha nem Lichess-hez kapcsolódót közvetítesz.</string>
+  <string name="rule3">A Lichess automatikusan észleli ha közvetítesz és az alábbi beállításokat érvényesíti:</string>
+  <string name="rule4" comment="the resulting message is: Read our streaming Fairplay FAQ to ensure a fair play for everyone in your stream">Olvasd el a %s-et, hogy mindenki számára igazságos legyen a játék a közvetítés ideje alatt is.</string>
+  <string name="streamingFairplayFAQ">sportszerű közvetítés GYIK</string>
+  <string name="perks">A kulcsszóval történő közvetítés előnyei</string>
+  <string name="perk1">Kapsz egy izzó streamer ikont a Lichess profilodra.</string>
+  <string name="perk2">A streamerek listájának elejére kerülsz.</string>
+  <string name="perk3">Lichess követőid értesítése.</string>
+  <string name="perk4">A közvetítésed mutatása a játszmáid, versenyeid és tanulmányaidnál.</string>
+  <string name="approved">A közvetítés jóváhagyva.</string>
+  <string name="pendingReview">A közvetítésed épp moderátoraink vizsgálják.</string>
+  <string name="pleaseFillIn">Kérjük add meg a streamer adataidat és tölts fel egy képet.</string>
+  <string name="whenReady" comment="whenReady&#10;&#10;%s is &quot;request a moderator review&quot;">Amikor készen állsz, hogy megjelenj a Lichess streamerei között, %s</string>
+  <string name="requestReview" comment="requestReview&#10;&#10;Used as part of the longer sentence: &quot;When you are ready to be listed as a Lichess streamer, request a moderator review&quot;">kérj jóváhagyást egy moderátortól</string>
+  <string name="streamerLanguageSettings">A Lichess streamer oldala a streamer platformod nyelvi beállításait használja, ezért a közvetítésed alapértelmezett nyelvét ott tudod beállítani.</string>
+  <string name="twitchUsername" comment="Appears on the form for setting up your Streamer page: https://lichess.org/streamer/edit&#10;&#10;Twitch is a proper noun and refers to the streaming service https://twitch.tv/. Please do not translate the word 'Twitch'.">Twitch felhasználóneved vagy URL</string>
+  <string name="optionalOrEmpty">Nem kötelező. Hagyd üresen, ha nincs</string>
+  <string name="youTubeChannelId" comment="Appears on the form for setting up your Streamer page: https://lichess.org/streamer/edit&#10;&#10;The Channel ID is a special alphanumeric string. See Google's guide here for how to retrieve it: https://support.google.com/youtube/answer/3250431&#10;&#10;We encourage translators to match what the Channel ID is called in your language's version of YouTube: https://www.youtube.com/account_advanced">YouTube csatornád azonosítója</string>
+  <string name="streamerName">Streamer neved a Lichess-en</string>
+  <plurals name="keepItShort">
+    <item quantity="one">Legyen rövid: legfeljebb %s karakter</item>
+    <item quantity="other">Legyen rövid: legfeljebb %s karakter</item>
+  </plurals>
+  <string name="visibility">Megjelenik a streamerek oldalán</string>
+  <string name="whenApproved">Ha a moderátorok jóvá hagyták</string>
+  <string name="headline">Főcím</string>
+  <string name="tellUsAboutTheStream">A közvetítés jellemzése egy mondatban</string>
+  <string name="longDescription">Bővebb leírás</string>
+  <string name="xStreamerPicture">%s streamer képe</string>
+  <string name="changePicture">Kép szerkesztése/törlése</string>
+  <string name="uploadPicture">Kép feltöltése</string>
+  <string name="maxSize">Maximális méret: %s</string>
+</resources>

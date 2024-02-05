@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  redis:
+    image: redis:6-alpine
+    container_name: lila_redis
+    ports:
+      - 6379:6379
+  mongodb:
+    image: mongo:5.0.24-focal
+    restart: always
+    container_name: lila_mongo
+    ports:
+      - 27017:27017
+#    volumes:
+      # use `docker exec -it lila_mongo bash` to get a shell inside mongo
+      # container. Directory containing this docker-compose.yml will be mounted
+      # as /host inside container so you can import db dumps, etc.
+     # - ./index-init-mongo.sh:/docker-entrypoint-initdb.d/index-init-mongo.sh
+     # - .:/host
+#      - lila_mongo_data:/data/db
+
+  lila:
+    build:
+      context: .
+      # dockerfile: Dockerfile
+    ports:
+      - 9663:9663
+    container_name: lila
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+      - redis
+
+#    environment:
+#      - SBT_OPTS=
+#        -Dmongodb.uri=mongodb://mongodb:27017/lichess
+#        -Dredis.uri=redis://localhost:6379
+
+#    volumes:
+#       - ./lila:/home/liches/lila
+#       - ./application.conf:/lila/conf/application.conf
+
+#volumes:
+#  lila_mongo_data: {}
+

@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sh 'ls -l'
                 sh 'cd lila/'
+				sh 'ls -l'
                 sh './lila test'
             }
         }

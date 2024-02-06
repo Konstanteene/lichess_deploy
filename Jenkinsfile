@@ -9,7 +9,7 @@ pipeline {
                 sh 'ls -l'
 				sh 'ls -l lila'
 				sh 'chmod +x lila/lila'
-				sh 'ls -l lila'
+				sh 'ls -la lila'
                 sh './lila/lila test'
             }
         }

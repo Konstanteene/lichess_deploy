@@ -10,6 +10,7 @@ pipeline {
 				sh 'ls -l lila'
 				dir('lila') {
 					sh "pwd"
+					ps aux
 					sh 'chmod +x lila'
 					sh 'ls -la lila'
 					sh './lila test'

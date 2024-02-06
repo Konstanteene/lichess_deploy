@@ -8,9 +8,12 @@ pipeline {
             steps {
                 sh 'ls -l'
 				sh 'ls -l lila'
-				sh 'chmod +x lila/lila'
-				sh 'ls -la lila'
-                sh './lila/lila test'
+				dir('lila') {
+					sh "pwd"
+					sh 'chmod +x lila'
+					sh 'ls -la lila'
+					sh './lila test'
+				}
             }
         }
     }

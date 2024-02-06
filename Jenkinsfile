@@ -7,6 +7,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'ls -l'
+				sh 'ls -l lila'
                 sh './lila/lila test'
             }
         }

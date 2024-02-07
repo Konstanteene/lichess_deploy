@@ -9,6 +9,7 @@ pipeline {
                   docker {
                       image 'sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1'
                   }
+			}
             steps {
                 sh 'ls -l'
 				sh 'ls -l lila'
@@ -20,13 +21,13 @@ pipeline {
 					sh './lila test'
 				}
 			}
-			}
+		}
 		stage('Build docker image') {
             steps {
                 sh 'docker build -t lichess .'
 				sh ''
-				}
 			}
 		}
 	}
 }
+

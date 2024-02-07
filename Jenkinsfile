@@ -10,11 +10,10 @@ pipeline {
 				sh 'ls -l lila/'
 				sh 'chmod +x lila/lila'
 				sh 'ls -l lila/'	
-					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside('-v $PWD/lila:/lila') { c ->
+					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside('-e HOME=/root/jenkins-agent/workspace/lichess/lila') { c ->
 						sh 'pwd'
 						sh 'ls -l'
-						sh 'ls -l lila'
-						sh './lila/lila test'
+						sh './lila test'
 					}
 				}
 			}

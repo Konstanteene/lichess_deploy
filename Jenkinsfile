@@ -7,10 +7,10 @@ pipeline {
         stage('Test') {
 			steps{
 				script {
-					sh 'chmod +x ./lila'
+					
 					sh 'pwd'
 					sh 'ls -l'
-					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside('-v $PWD:/lila') { c ->
+					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside('-v $PWD/lila:/lila') { c ->
 						sh './lila test'
 					}
 				}

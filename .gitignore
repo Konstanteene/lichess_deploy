@@ -1,58 +1,56 @@
-lila/.git
-lila/.sbtopts
-lila/.jvmopts
-lila/.bsp
-lila/.bloop/
-lila/.metals/
-lila/.pnpm-store/
-lila/project/.bloop/
-lila/conf/application.conf
-lila/conf/version.conf
+.sbtopts
+.jvmopts
+.bsp
+.bloop/
+.metals/
+.pnpm-store/
+project/.bloop/
+conf/application.conf
+conf/version.conf
 
-lila/logs
-lila/project/metals.sbt
-lila/project/project
-lila/project/target
-lila/public/compiled
-lila/public/npm
-lila/public/lifat
-lila/public/css/
-lila/target
-lila/data/
-lila/dist/
-lila/node_modules/
-lila/local/
-lila/ui/common/**/*.js
-lila/ui/common/**/*.d.ts
-lila/ui/chess/**/*.js
-lila/ui/chess/**/*.d.ts
-lila/ui/game/**/*.js
-lila/ui/game/**/*.d.ts
-lila/ui/nvui/**/*.js
-lila/ui/nvui/**/*.d.ts
-lila/ui/puz/**/*.js
-lila/ui/puz/**/*.d.ts
-lila/ui/voice/.build/crowdv
-lila/ui/*/npm-debug.log
-lila/ui/*/tsconfig.tsbuildinfo
-lila/hs_*.log
-lila/dependency-graph.png
+logs
+project/metals.sbt
+project/project
+project/target
+public/compiled
+public/npm
+public/lifat
+public/css/
+target
+data/
+dist/
+node_modules/
+local/
+ui/common/**/*.js
+ui/common/**/*.d.ts
+ui/chess/**/*.js
+ui/chess/**/*.d.ts
+ui/game/**/*.js
+ui/game/**/*.d.ts
+ui/nvui/**/*.js
+ui/nvui/**/*.d.ts
+ui/puz/**/*.js
+ui/puz/**/*.d.ts
+ui/voice/.build/crowdv
+ui/*/npm-debug.log
+ui/*/tsconfig.tsbuildinfo
+hs_*.log
+dependency-graph.png
 
-lila/RUNNING_PID
-lila/.DS_Store
+RUNNING_PID
+.DS_Store
 
 # Eclipse auto-generated files
-lila/modules/*/.classpath
-lila/modules/*/.project
-lila/modules/*/.settings/
+/modules/*/.classpath
+/modules/*/.project
+/modules/*/.settings/
 
 # VSCode auto-generated files
-lila/.vscode/
+.vscode/
 
 # IntelliJ auto-generated files
-lila/.idea
+.idea
 
 # Docker-compose / docker sbt
-lila/docker-compose.yml
-lila/? 
-
+/docker-compose.yml
+/?

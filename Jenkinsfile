@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label "agent1"
-    }
+    agent { label "agent1" }
 	environment {
         HOME = "${env.WORKSPACE}"
     }
@@ -21,13 +19,14 @@ pipeline {
 					sh 'ls -la lila'
 					sh './lila test'
 				}
-            }
-        }
+			}
+			}
 		stage('Build docker image') {
             steps {
                 sh 'docker build -t lichess .'
 				sh ''
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 }

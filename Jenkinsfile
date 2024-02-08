@@ -5,22 +5,23 @@ pipeline {
     }
     stages {
         stage('Test') {
-			steps{
-				script {
-					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside{
-						dir('lila') {
-							sh './lila test'
-						}
+		steps{
+			script {
+				docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside{
+					dir('lila') {
+						sh './lila test'
 					}
 				}
-			}	
+			}
+		}	
+	}
+	stage("Build docker image"){
+		steps{
+			sh "cp -r .git lila/"
+			sh "docker build . -t lichess"
 		}
-		stage("Build docker image"){
-            steps{
-		sh "docker build . -t lichess"
-            }
         }
-		stage("Push to Docker Hub"){
+	stage("Push to Docker Hub"){
             steps{
                 withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
 					sh "docker tag lichess ${env.dockerHubUser}/lichess:latest"

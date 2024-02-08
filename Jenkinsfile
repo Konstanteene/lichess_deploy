@@ -17,7 +17,10 @@ pipeline {
 	}
 	stage("Build docker image"){
 		steps{
+			sh "ls -l"
+			sh "ls -l lila"
 			sh "cp -r .git lila/"
+			sh "ls -l lila"
 			sh "docker build . -t lichess"
 		}
         }

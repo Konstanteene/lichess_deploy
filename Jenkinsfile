@@ -18,6 +18,7 @@ pipeline {
 		}
 		stage("Build docker image"){
             steps{
+				sh 'chmod +x /ui/build'
                 sh "docker build . -t lichess"
             }
         }

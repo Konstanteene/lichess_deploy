@@ -7,7 +7,7 @@ pipeline {
 		REMOTE_SERVER_IP = credentials('remote_server_ip')
     }
     stages {
- /*       stage('Test') {
+       stage('Test') {
 			steps{
 				script {
 					sh "cat application.conf"
@@ -33,7 +33,7 @@ pipeline {
 					sh "docker push ${env.dockerHubUser}/lichess:latest"
                	}
             }
-    	} */
+    	} 
 		stage("Deploy"){
 			steps{
 				script{

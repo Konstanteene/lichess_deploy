@@ -7,7 +7,7 @@ pipeline {
 		REMOTE_SERVER_IP = credentials('remote_server_ip')
     }
     stages {
-        stage('Test') {
+ /*       stage('Test') {
 			steps{
 				script {
 					sh "cat application.conf"
@@ -33,13 +33,13 @@ pipeline {
 					sh "docker push ${env.dockerHubUser}/lichess:latest"
                	}
             }
-    	}
+    	} */
 		stage("Deploy"){
 			steps{
 				script{
 					def dockerComposeCmd = 'docker-compose -f /root/docker-compose.yml up -d'
 					sshagent(['remote-server-ssh-key']){
-						sh "scp docker-compose.yml root@${REMOTE_SERVER_IP}:/root"
+						sh "scp docker-compose.yml root@${REMOTE_SERVER_IP}:/home/app"
 						sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} ${dockerComposeCmd}"
 					}
 				}

@@ -32,8 +32,8 @@ services:
       - mongodb
       - redis
     environment:
-      - LILA_IP=${LILA_IP:-localhost}
-      - LILA_WS_IP=${LILA_WS_IP:-localhost}
+      - LILA_IP=${LILA_IP:-localhost:9663}
+      - LILA_WS_IP=${LILA_WS_IP:-localhost:9664}
 
 
 #volumes:

@@ -20,8 +20,9 @@ services:
 #      - lila_mongo_data:/data/db
 
   lila:
-    build:
-      context: .
+    image: konstanteenn/lichess:latest
+    # build:
+      # context: .
       # dockerfile: Dockerfile
     ports:
       - 9663:9663
@@ -30,15 +31,10 @@ services:
     depends_on:
       - mongodb
       - redis
+    environment:
+      - LILA_IP=${LILA_IP:-localhost}
+      - LILA_WS_IP=${LILA_WS_IP:-localhost}
 
-#    environment:
-#      - SBT_OPTS=
-#        -Dmongodb.uri=mongodb://mongodb:27017/lichess
-#        -Dredis.uri=redis://localhost:6379
-
-#    volumes:
-#       - ./lila:/home/liches/lila
-#       - ./application.conf:/lila/conf/application.conf
 
 #volumes:
 #  lila_mongo_data: {}

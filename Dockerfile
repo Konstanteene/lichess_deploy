@@ -8,7 +8,7 @@ FROM node:21 AS ui-build
 WORKDIR /lila
 COPY --from=scala-build ./lila .
 RUN npm i -g pnpm && \
-	#cp .git lila/.git && \
+	# cp .git lila/.git && \
 	./ui/build
 
 # FROM eclipse-temurin:21.0.2_13-jdk-jammy

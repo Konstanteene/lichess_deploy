@@ -36,10 +36,11 @@ pipeline {
 		stage("Deploy"){
 			steps{
 				script{
-					def dockerComposeCmd = 'docker compose -f /home/app/docker-compose.yml up -d'
+					def dockerComposeCmd = 'docker compose -f /home/app/docker-compose.yml up'
+					def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
 					sshagent(['remote-server-ssh-key']){
 						sh "scp docker-compose.yml root@${REMOTE_SERVER_IP}:/home/app/"
-						sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} ${dockerComposeCmd}"
+						sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeCmd}'"
 					}
 				}
 			}

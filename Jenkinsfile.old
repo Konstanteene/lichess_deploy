@@ -7,21 +7,9 @@ pipeline {
 		REMOTE_SERVER_IP = credentials('remote_server_ip')
     }
     stages {
-		stage('Build') {
+       stage('Test') {
 			steps{
 				script {
-					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside{
-						dir('lila') {
-							sh './lila compile'
-						}
-					}
-				}
-			}	
-		}
-        stage('Test') {
-			steps{
-				script {
-					sh "cat application.conf"
 					docker.image('sbtscala/scala-sbt:eclipse-temurin-jammy-21.0.2_13_1.9.8_3.3.1').inside{
 						dir('lila') {
 							sh './lila test'
@@ -49,9 +37,10 @@ pipeline {
 			steps{
 				script{
 					def dockerComposeCmd = 'docker compose -f /home/app/docker-compose.yml up -d'
+					def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
 					sshagent(['remote-server-ssh-key']){
 						sh "scp docker-compose.yml root@${REMOTE_SERVER_IP}:/home/app/"
-						sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} ${dockerComposeCmd}"
+						sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeCmd}'"
 					}
 				}
 			}

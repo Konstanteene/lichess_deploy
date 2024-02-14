@@ -5,8 +5,8 @@ pipeline {
     	LILA_IP = credentials('LILA_IP')
     	LILA_WS_IP = credentials('LILA_WS_IP')
     	REMOTE_SERVER_IP = credentials('remote_server_ip')
-    	DOCKER_HUB_USER = credentials('dockerHub').username
-    	DOCKER_HUB_PASS = credentials('dockerHub').password
+    	DOCKER_HUB = credentials('dockerHub')
+
     }
     stages {
        stage('Test') {
@@ -28,9 +28,9 @@ pipeline {
       	}
     	stage("Push to Docker Hub"){
             steps{
-                sh "docker tag lichess ${DOCKER_HUB_USER}/lichess:latest"
-                sh "docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASS}"
-                sh "docker push ${DOCKER_HUB_USER}/lichess:latest"
+                sh "docker tag lichess ${DOCKER_HUB_USR}/lichess:latest"
+                sh "docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}"
+                sh "docker push ${DOCKER_HUB_USR}/lichess:latest"
             }
         } 
     	stage("Deploy"){

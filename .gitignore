@@ -1,3 +1,7 @@
+Dockerfile.*
+Jenkinsfile.*
+
+
 lila/.github
 lila/.git
 lila/.sbtopts

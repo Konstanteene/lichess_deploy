@@ -18,5 +18,5 @@ WORKDIR /lila
 # COPY --from=ui-build /lila .
 COPY --from=ui-build /lila/target/universal/stage .
 COPY --from=scala-build /lila/conf/ ./conf
-CMD [ "bin/lila" ]
+CMD [ "bin/lila -Dhttp.port=80" ]
 # CMD ["target/universal/stage/bin/lila -Dlogger.file=/lila/conf/logger.dev.xml -Dapplication.home=/lila -Dhttp.port=9663 -Dconfig.file=/lila/conf/application.conf"]

@@ -34,19 +34,19 @@ pipeline {
             }
         } 
     	stage("Deploy"){
-      	steps{
-        	script{
-          		def dockerComposeBuild = 'docker compose -f /home/app/docker-compose.yml build'
-          		def dockerComposeUp = 'docker compose -f /home/app/docker-compose.yml up -d'
-          		def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
-          		sshagent(['remote-server-ssh-key']){
-            		sh 'scp docker-compose.yml root@$REMOTE_SERVER_IP:/home/app/'
-            		sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeBuild} && ${dockerComposeUp}'"
-          }
-        }
-      }
-    }
-  }
+      		steps{
+        		script{
+          			def dockerComposeBuild = 'docker compose -f /home/app/docker-compose.yml build'
+          			def dockerComposeUp = 'docker compose -f /home/app/docker-compose.yml up -d'
+          			def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
+          			sshagent(['remote-server-ssh-key']){
+            			sh 'scp docker-compose.yml root@$REMOTE_SERVER_IP:/home/app/'
+            			sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeBuild} && ${dockerComposeUp}'"
+          			}
+        		}
+      		}
+    	}
+  	}
   	post {
     	always {
       		cleanWs()

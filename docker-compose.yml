@@ -25,7 +25,7 @@ services:
 #      context: .
 #      dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 80:9663
     container_name: lila
     restart: unless-stopped
     depends_on:

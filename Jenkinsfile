@@ -23,14 +23,15 @@ pipeline {
     	stage("Build docker image"){
       		steps{
         		sh "cp -r .git lila/"
-        		sh "docker build . -t lichess"
+        		sh 'docker build . -t $DOCKER_HUB_USR/lichess:latest'
       		}
       	}
     	stage("Push to Docker Hub"){
             steps{
-                sh 'docker tag lichess $DOCKER_HUB_USR/lichess:latest'
+                /* sh 'docker tag lichess $DOCKER_HUB_USR/lichess:latest' */
                 sh 'docker login -u $DOCKER_HUB_USR -p $DOCKER_HUB_PSW'
                 sh 'docker push $DOCKER_HUB_USR/lichess:latest'
+				sh 'docker rmi $DOCKER_HUB_USR/lichess:latest' 
             }
         } 
     	stage("Deploy"){

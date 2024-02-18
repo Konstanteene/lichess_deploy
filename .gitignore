@@ -1,6 +1,5 @@
-Dockerfile.*
 Jenkinsfile.*
-
+Dockerfile.*
 
 lila/.github
 lila/.git

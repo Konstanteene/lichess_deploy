@@ -5,8 +5,8 @@ pipeline {
     	LILA_IP = credentials('LILA_IP')
     	LILA_WS_IP = credentials('LILA_WS_IP')
     	REMOTE_SERVER_IP = credentials('remote_server_ip')
-    	DOCKER_HUB_USER = credentials('dockerHub').username
-    	DOCKER_HUB_PASS = credentials('dockerHub').password
+    	DOCKER_HUB = credentials('dockerHub')
+
     }
     stages {
        stage('Test') {
@@ -23,30 +23,31 @@ pipeline {
     	stage("Build docker image"){
       		steps{
         		sh "cp -r .git lila/"
-        		sh "docker build . -t lichess"
+        		sh 'docker build . -t $DOCKER_HUB_USR/lichess:latest'
       		}
       	}
     	stage("Push to Docker Hub"){
             steps{
-                sh "docker tag lichess ${DOCKER_HUB_USER}/lichess:latest"
-                sh "docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASS}"
-                sh "docker push ${DOCKER_HUB_USER}/lichess:latest"
+                /* sh 'docker tag lichess $DOCKER_HUB_USR/lichess:latest' */
+                sh 'docker login -u $DOCKER_HUB_USR -p $DOCKER_HUB_PSW'
+                sh 'docker push $DOCKER_HUB_USR/lichess:latest'
+				sh 'docker rmi $DOCKER_HUB_USR/lichess:latest' 
             }
         } 
     	stage("Deploy"){
-      	steps{
-        	script{
-          		def dockerComposeBuild = 'docker compose -f /home/app/docker-compose.yml build'
-          		def dockerComposeUp = 'docker compose -f /home/app/docker-compose.yml up -d'
-          		def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
-          		sshagent(['remote-server-ssh-key']){
-            		sh "scp docker-compose.yml root@${REMOTE_SERVER_IP}:/home/app/"
-            		sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeBuild} && ${dockerComposeUp}'"
-          }
-        }
-      }
-    }
-  }
+      		steps{
+        		script{
+          			def dockerComposeBuild = 'docker compose -f /home/app/docker-compose.yml build'
+          			def dockerComposeUp = 'docker compose -f /home/app/docker-compose.yml up -d'
+          			def exportVars = "export LILA_IP=${LILA_IP} && export LILA_WS_IP=${LILA_WS_IP} && source ~/.bashrc"
+          			sshagent(['remote-server-ssh-key']){
+            			sh 'scp docker-compose.yml root@$REMOTE_SERVER_IP:/home/app/'
+            			sh "ssh -o StrictHostKeyChecking=no root@${REMOTE_SERVER_IP} '${exportVars} && ${dockerComposeBuild} && ${dockerComposeUp}'"
+          			}
+        		}
+      		}
+    	}
+  	}
   	post {
     	always {
       		cleanWs()

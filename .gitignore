@@ -1,5 +1,6 @@
 Jenkinsfile.*
 Dockerfile.*
+.env
 
 lila/.github
 lila/.git

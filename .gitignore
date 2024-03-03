@@ -1,6 +1,7 @@
 Jenkinsfile.*
 Dockerfile.*
 .env
+lila-secret.yml
 
 lila/.github
 lila/.git

@@ -5,15 +5,6 @@ services:
     container_name: lila_redis
     ports:
       - 6379:6379
-  # mongodb:
-  #   image: mongo:4.4.28-focal
-  #   restart: always
-  #   container_name: lila_mongo
-  #   ports:
-  #     - 27017:27017
-  #   volumes:
-  #    # - ./index-init-mongo.sh:/docker-entrypoint-initdb.d/index-init-mongo.sh
-  #     - lila_mongo_data:/data/db
 
   lila:
 #    image: konstanteenn/lichess-kube:latest
@@ -25,7 +16,6 @@ services:
     container_name: lila
     restart: unless-stopped
     depends_on:
-      # - mongodb
       - redis
     environment:
       - LILA_IP=${LILA_IP:-localhost}
@@ -33,7 +23,4 @@ services:
       - MONGO_URI=${MONGO_URI:-mongodb://mongodb?appName=lila}
       - REDIS_URI=${REDIS_URI:-redis://redis}
 
-
-# volumes:
-#   lila_mongo_data: {}
 

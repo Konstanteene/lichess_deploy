@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lila-deployment
+  labels:
+    app: lila
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lila
+  template:
+    metadata:
+      labels:
+        app: lila
+    spec:
+      containers:
+      - name: lila
+        image: konstanteenn/lichess-kube:latest
+        ports:
+        - containerPort: 9663
+        env:
+        - name: LILA_IP
+          value: localhost
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: lila-secret
+        #       key: LILA_IP
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: lila-secret
+              key: MONGO_URI
+        - name: REDIS_URI
+          # valueFrom:
+          #   configMapKeyRef:
+          #     name: lila-configmap
+          #     key: redis_url
+          value: "redis://redis-service:6379"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lila-service
+spec:
+  selector:
+    app: lila
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9663
+      nodePort: 30000
